@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    
+    <title>Task App</title>
+  </head>
+  <body>
+    <div id="myHEAD" class="header">
+      <h1>Task App</h1> 
+      <input type="text" id="myInput" placeholder="Task Name...">
+      <span onclick="new_element()" class="add_button">Create New Task</span>
+    </div>
+
+    <div id "d1" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <ul id="myUnordered">
+        <li draggable="true" ondragstart="drag(event)">This is task number 1</li>
+        <li draggable="true" ondragstart="drag(event)">This is task number 2</li>
+        <li draggable="true" ondragstart="drag(event)">This is task number 3</li>
+        <li draggable="true" ondragstart="drag(event)">This is task number 4</li>
+        <li draggable="true" ondragstart="drag(event)">This is task number 5</li>
+        <li draggable="true" ondragstart="drag(event)">This is task number 6</li>
+      </ul>
+    </div>
+
+    <script src="main.js" type="text/javascript"></script>
+  </body>
+
+</html>
