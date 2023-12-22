@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Tempo</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <h1>Audio File Processor</h1>
+    <table id="fileTable">
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>File Size</th>
+                <th>Audio Length</th>
+            </tr>
+                
+            <tr>
+                <td>263889__jarredgibb__rattle-drum</td>
+                <td>18.3 MB</td>
+                <td>00:01:06</td>
+            </tr>
+
+            <tr>
+                <td>641693__theflyfishingfilmmaker__bluesy-violin-repeating-lick</td>
+                <td>4.76 MB</td>
+                <td>00:00:28</td>
+            </tr>
+
+            <tr>
+                <td>680316__turkis__mallets-on-piano-114bpm</td>
+                <td>2.83 MB</td>
+                <td>00:00:08</td>
+            </tr>
+        </thead>
+    </table>
+
+    <button onclick="exportToExcel()">Export to Excel</button>
+    
+    <script>
+         fetch('http://localhost:8086/api/files')
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById('fileTable');
+
+                data.forEach(file => {
+                    const row = table.insertRow();
+                    const nameCell = row.insertCell(0);
+                    const sizeCell = row.insertCell(1);
+                    
+                    nameCell.innerText = file.name;
+                    sizeCell.innerText = file.size;
+                    
+                });
+            })
+            .catch(error => console.error('Error:', error));
+
+            <!-- Add this button inside the body -->
+
+
+    function exportToExcel() 
+    {
+        
+        const wb = XLSX.utils.table_to_book(document.getElementById('fileTable'));
+        XLSX.writeFile(wb, 'file_list.xlsx');
+    }
+    </script>
+</body>
+
+</html>
